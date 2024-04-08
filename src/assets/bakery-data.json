@@ -16,15 +16,18 @@
   },
   {
     "id": 2,
-    "name": "Chocolate Chip Cookies",
-    "description": "Four classic chocolate chip cookies",
-    "dimentions": "Four classic chocolate chip cookies",
-    "price": 7.99,
-    "author": "XX",
-    "country":"XX", 
-    "medium": "XX",
-    "year": "XX",
-    "image": "images/anika.png"
+    "name": "Peonies, eggs and curly lettuce",
+    "description": "Peonies, eggs and curly lettuce conveys abundance and movement, the essence of a lively home. The idyllic memory of fresh food and flowers unpacked after returning from the market.",
+    "dimentions": "53 x 38 cm",
+    "price": 675,
+    "author": "Miriam Dema",
+    "country":"Spain", 
+    "medium": "Oil",
+    "material": "Canvas",
+    "year": "2020",
+    "style":"Modern",
+    "subject":"Floral",
+    "image": "images/peonies.jpeg"
   },
   {
     "id": 3,
