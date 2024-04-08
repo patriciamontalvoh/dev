@@ -11,28 +11,7 @@ function App() {
 
   const [cartItems, setCartItems] = useState([]);
   const [wishlistItems, setWishlistItems] = useState([]);
-  const [mediumFilter, setMediumFilter] = useState(''); 
-  const [materialFilter, setMaterialFilter] = useState('');
 
-  const addMediumFilter = (medium) => {
-    setMediumFilter(medium);
-  };
-
-  const addMaterialFilter = (material) => {
-    setMaterialFilter(material);
-  };
- 
-  const clearFilters = () => {
-    setMediumFilter('');
-    setMaterialFilter('');
-  };
-
-  const filteredData = bakeryData.filter((item) => {
-    return (mediumFilter === '' || item.medium.toLowerCase() === mediumFilter.toLowerCase()) &&
-           (materialFilter === '' || item.material.toLowerCase() === materialFilter.toLowerCase());
-  });
-
-  
   const addToCart = (itemToAdd) => {
     setCartItems((prevCartItems) => {
       const existingItemIndex = prevCartItems.findIndex(item => item.id === itemToAdd.id);
@@ -62,26 +41,136 @@ function App() {
     0
   );
 
+  const [mediumFilters, setMediumFilters] = useState([]); 
+  const [materialFilters, setMaterialFilters] = useState([]);
+
+  const toggleMediumFilters = (medium) => {
+    setMediumFilters((currentFilters) => {
+      if (currentFilters.includes(medium)) {
+        return currentFilters.filter((m) => m !== medium);
+      } else {
+        return [...currentFilters, medium];
+      }
+    });
+  };
+
+  const removeMediumFilter = (medium) => {
+    setMediumFilters((currentFilters) => currentFilters.filter((m) => m !== medium));
+  };
+
+   const toggleMaterialFilters = (material) => {
+    setMaterialFilters((currentFilters) => {
+      if (currentFilters.includes(material)) {
+        return currentFilters.filter((m) => m !== material);
+      } else {
+        return [...currentFilters, material];
+      }
+    });
+  };
+
+  const removeMaterialFilter = (material) => {
+    setMaterialFilters((currentFilters) => currentFilters.filter((m) => m !== material));
+  };
+
+  const filteredData = bakeryData.filter((item) => {
+    const mediumMatches = mediumFilters.length === 0 || mediumFilters.includes(item.medium?.toLowerCase());
+    const materialMatches = materialFilters.length === 0 || materialFilters.includes(item.material?.toLowerCase());
+    return mediumMatches && materialMatches;
+  });
+
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  const [sortOrder, setSortOrder] = useState(null);
+
+  const sortedData = filteredData.sort((a, b) => {
+    if (sortOrder === 'ascending') {
+      return a.price - b.price;
+    } else if (sortOrder === 'descending') {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
+  const sortLabel = () => {
+    if (sortOrder === 'ascending') {
+      return 'Price: Low to High';
+    } else if (sortOrder === 'descending') {
+      return 'Price: High to Low';
+    }
+    return 'None';
+  };
+
+  const removeSortFilter = () => {
+    setSortOrder(null);
+  };
+
+    const clearAll = () => {
+      setMediumFilters([]);
+      setMaterialFilters([]);
+      setSortOrder(null);
+    };  
 
   return (
     <div className="App">
-      <h1>Available artworks for sale</h1> 
+      <h1>Unique artworks for sale</h1> 
+      <div class="section-line"> </div> 
+      <div className="sorting-filtering-page">
+      <button className="clear-all-filter" onClick={clearAll}>Clear All</button>
+      <h3>Filters applied:</h3>
+          {mediumFilters.length === 0 && materialFilters.length === 0 ? (
+            <span className="filter-label">None</span>
+          ) : (
+            <>
+              {mediumFilters.map((filter, index) => (
+                <span key={index} className="filter-label" onClick={() => removeMediumFilter(filter)}>
+                  Medium: {filter} ×
+                </span>
+              ))}
+              {materialFilters.map((filter, index) => (
+                <span key={index} className="filter-label" onClick={() => removeMaterialFilter(filter)}>
+                  Material: {filter} ×
+                </span>
+              ))}
+            </>
+          )}
+            
+        <h3>Sorted by:</h3>
+  {sortOrder ? (
+    <span className="filter-label" onClick={removeSortFilter}>
+      {sortLabel()} ×
+    </span>
+  ) : (
+    <span className="filter-label">None</span>
+  )} 
+           </div>
+      <div class="section-line"> </div> 
       <div className="main-page">
       <div className="filters-page">
-       <h2>Filter</h2>
-       <h2>By medium</h2>
-          <button className="filters-btn" onClick={() => addMediumFilter('Oil')}>Oil</button>
-          <button className="filters-btn" onClick={() => addMediumFilter('Watercolor')}> Watercolor</button>
-          <button className="filters-btn" onClick={() => addMediumFilter('Acrilic')}>Acrilic</button>
-          <button className="filters-btn" onClick={clearFilters}>Clear Filter</button>
-        <h2>By material</h2>  
-          <button className="filters-btn" onClick={() => addMaterialFilter('Canvas')}>Canvas</button>
-          <button className="filters-btn" onClick={() => addMaterialFilter('Paper')}>Paper</button>
-
-          <button className="filters-btn" onClick={clearFilters}>Clear Filters</button>
+       <h2>Filter:</h2>
+       <div class="subsection-line-02"> </div> 
+        <h3>By medium</h3>
+        <div class="subsection-line-03"> </div> 
+          <button className="filters-button" onClick={() => toggleMediumFilters('oil')}>Oil</button>
+          <button className="filters-button" onClick={() => toggleMediumFilters('watercolor')}>Watercolor</button>
+          <button className="filters-button" onClick={() => toggleMediumFilters('acrylic')}>Acrylic</button>
+          <div class="subsection-line-02"> </div> 
+        <h3>By material</h3>
+        <div class="subsection-line-03"> </div> 
+          <button className="filters-button" onClick={() => toggleMaterialFilters('canvas')}>Canvas</button>
+          <button className="filters-button" onClick={() => toggleMaterialFilters('paper')}>Paper</button>
+          <div class="subsection-line-01"> </div> 
+          <h2>Sort:</h2>
+          <div class="subsection-line-02"> </div> 
+          <h3>By price:</h3>
+          <div class="subsection-line-03"> </div> 
+          <div className="sort-buttons">
+            <button className="filters-button" onClick={() => setSortOrder('ascending')}>High to low</button>
+            <button className="filters-button" onClick={() => setSortOrder('descending')}>Low to high</button>
+          </div>
         </div>  
+        <div class="vertical-line"> </div> 
       <div className="items-page">
-          {filteredData.map((item, index) => ( 
+          {sortedData.map((item, index) => ( 
             <BakeryItem
             key={index}
             image={item.image}
@@ -91,6 +180,7 @@ function App() {
             author={item.author}
             country={item.country}
             medium={item.medium}
+            material={item.material}
             year={item.year}
             price={item.price}
             addToCart={() => addToCart(item)}
@@ -98,7 +188,7 @@ function App() {
             />
           ))}
       </div>
-      
+      <div class="vertical-line"> </div> 
       <div className="cart-page">
        <h2>My cart</h2>
          {cartItems.length > 0 ? (
@@ -113,6 +203,7 @@ function App() {
           ) : (
             <p>Your cart is empty.</p>
           )}
+          <div class="subsection-line-01"> </div> 
 
           <h2>My Wishlist</h2>
           {wishlistItems.length > 0 ? (

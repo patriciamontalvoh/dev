@@ -5,11 +5,111 @@
   box-sizing: border-box;
 }
 
+.section-line{
+  border-bottom: .075rem solid #000000;
+  width: 130%;
+  margin-top: 1%;
+  margin-bottom: 0%;
+  align-self: center;
+}
+
+.subsection-line-01{
+  border-bottom: .075rem solid #000000;
+  width: 100%;
+}
+.subsection-line-02{
+  border-bottom: .05rem solid #000000;
+  width: 100%;
+}
+
+.subsection-line-03{
+  border-bottom: .05rem solid rgba(0,0,0,0.25);
+  width: 100%;
+}
+
+
+.vertical-line {
+  width: .075rem; 
+  background-color: #000; 
+  margin: 0 20px; 
+  align-self: stretch;
+}
+
+
 .App {
+  font-family: Times New Roman;
   margin: 6%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
+  .sorting-filtering-page{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+  }
+
+  .filters-button {
+    padding: 5px 10px;
+    color: black;
+    border-radius: 15px;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    border: 0;
+  }
+
+  .filters-button:hover {
+    background-color: #ccc;
+    color: #222;
+    }
+
+    .filters-button:active {
+      background-color: blue;
+      color: white;
+    }
+
+  .filter-label {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #ddd;
+    color: #555;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+   .clear-all-filter{
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #000;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  .filter-label:hover {
+    background-color: #ccc;
+    color: #222;
+  }
+
+  .sort-btn {
+    margin-top: 10px;
+    padding: 5px 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .sort-btn:hover {
+    background-color: #e8e8e8;
+  }
   .main-page{
     display: flex;
     flex-direction: row;
@@ -28,7 +128,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: top;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
   }
 
@@ -37,4 +138,6 @@
     flex-direction: column;
     align-items: start; 
   }
-}
+
+} 
+
