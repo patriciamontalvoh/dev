@@ -148,7 +148,6 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start; 
-    justify-content: space-between; 
   }
   
   .filters-page{
@@ -168,14 +167,15 @@
   }
 
   .items-page{
-    width: 100%;
+    margin-top: 3%;
+    margin-right: 15%;
+    margin-left: 15%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    margin-left: 18%;
-    margin-right: 18%;
+    overflow-x: visible;
   }
 
   .items-page.in-wishlist {
