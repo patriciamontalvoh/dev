@@ -239,9 +239,9 @@ const toggleMaterialFilters = (material) => {
     } else if (priceSortOrder === 'descending') {
       return 'Price: High to Low';
     } else if (sizeSortOrder === 'ascending') {
-      return 'Size: Low to High';
+      return 'Size: Small to Large';
     } else if (sizeSortOrder === 'descending') {
-      return 'Size: High to Low';
+      return 'Size: Large to Small';
     }
     return 'None';
   };
