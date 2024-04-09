@@ -7,7 +7,7 @@
 
 .section-line{
   border-bottom: .075rem solid #000000;
-  width: 130%;
+  width: 100%;
   margin-top: 1%;
   margin-bottom: 0%;
   align-self: center;
@@ -27,22 +27,30 @@
   width: 100%;
 }
 
+.section-line-white{
+  border-bottom: .05rem solid white;
+  width: 100%;
+  margin: 2%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 
 .vertical-line {
-  width: .075rem; 
-  background-color: #000; 
-  margin: 0 20px; 
-  align-self: stretch;
+  width: 5px; 
+  color: #000;
+  height: 100%;
 }
 
 
 .App {
   font-family: Times New Roman;
-  margin: 6%;
+  margin: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
+  padding-top: 120px;
 
   .sorting-filtering-page{
     display: flex;
@@ -50,6 +58,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 1%;
+    flex-wrap: wrap;
   }
 
   .filters-button {
@@ -66,10 +75,10 @@
     color: #222;
     }
 
-    .filters-button:active {
-      background-color: blue;
-      color: white;
-    }
+  .filters-button:active {
+    background-color: blue;
+    color: white;
+  }
 
   .filter-label {
     display: inline-block;
@@ -81,14 +90,24 @@
     cursor: pointer;
   }
 
-   .clear-all-filter{
-    display: inline-block;
+   .clear{
     margin: 5px;
     padding: 5px 10px;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.75);
     color: white;
     border-radius: 15px;
-    cursor: pointer;
+    border: 0;
+
+  }
+
+  .clear:hover{
+    background-color: black;
+    font-weight: bold;
+  }
+
+  .clear:active{
+    background-color: blue;
+    font-weight: bold;
   }
 
   .filter-label:hover {
@@ -110,18 +129,41 @@
   .sort-btn:hover {
     background-color: #e8e8e8;
   }
+
+  .menu-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    position:fixed;
+    top: 0;
+    padding-top: 3%;
+    width: 100%;
+    background-color: white;
+    z-index: 1000; 
+
+  }
+  
   .main-page{
     display: flex;
     flex-direction: row;
-    align-items: top;
+    align-items: flex-start; 
+    justify-content: space-between; 
   }
   
   .filters-page{
-    width: 25%;
+    justify-self: flex-start;
     display: flex;
     flex-direction: column;
-    align-items: top;
-    align-items: flex-start;
+    position: fixed;
+    margin: 1%;
+    margin-top: 3%;
+    max-width: 15%;
+    left: 3%;
+    height: auto;
+    max-height: calc(100vh - 30vh);
+    overflow-y: auto;
+    padding-right: 2%;
   }
 
   .items-page{
@@ -131,12 +173,193 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .items-page.in-wishlist {
+    border: 2px solid #FFD700; 
+    padding: 2px;
   }
 
   .cart-page{
     display: flex;
     flex-direction: column;
-    align-items: start; 
+    margin: 1%;
+    position: fixed;
+    margin-top: 3%;
+    max-width: 13%;
+    right: 4%; 
+    max-height: calc(100vh - 30vh);
+    height: auto;
+    overflow-y:scroll;
+    overflow-x: visible;
+    }
+
+  .art-item.in-wishlist {
+    border: 2px solid #ff4500; 
+    position: relative;
+  }
+  
+  .notification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .wishlist-notification {
+    width: 25%;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 219, 209, 0.85);
+    color: black;
+    font-size: 1.5rem;
+    padding: 5%;
+    border-radius: 10px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+
+  .cart-notification {
+    width: 25%;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(205, 218, 255, 0.85);
+    color: black;
+    font-size: 1.5rem;
+    padding: 5%;
+    border-radius: 10px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .remove-notification {
+    width: 25%;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(227, 227, 227, 0.85);
+    color: black;
+    font-size: 1.5rem;
+    padding: 5%;
+    border-radius: 10px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .notifiaction-message{
+    text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        font-size: 2rem;
+  }
+
+  .notifiaction-icon{
+  width: 100%;
+  height: 15%;
+  padding: 15%;
+  }
+  .notifiaction-cart-icon{
+    width: 100%;
+    height: 15%;
+    padding: 25%;
+    }
+
+  .wishlist-notification button {
+    background: transparent;
+    border: none;
+    color: blue;
+    margin-top: 10%;
+    font-size: 1rem;
+    margin-bottom: -8%;
+  }
+
+  .cart-notification button {
+    background: transparent;
+    border: none;
+    color: blue;
+    margin-top: 10%;
+    font-size: 1rem;
+    margin-bottom: -8%;
+  }
+
+  .remove-notification button {
+    background: transparent;
+    border: none;
+    color: blue;
+    margin-top: 10%;
+    font-size: 1rem;
+    margin-bottom: -8%;
+  }
+
+  .item-label-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e9e9e9; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+  }
+
+  .item-label {
+    margin-right: 10px;
+  }
+
+  .remove-item-btn{
+    height: 30px;
+    width: 30px;
+    padding: 5px 10px;
+    color: black;
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .remove-item-btn:hover {
+    background-color: #b2b2b2; 
+    color: #222; 
+  }
+
+  .remove-item-btn:active {
+    background-color: blue; 
+    color: white; 
+  }
+
+  .filters-button.active{
+    border: 2px solid blue;
   }
 
 } 
