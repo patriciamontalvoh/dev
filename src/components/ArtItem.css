@@ -9,14 +9,13 @@
   position: relative;
 
       .art-item {
-        max-width: 300px;
+        max-width: 320px;
         background-color: #f4f3f3;
-        margin:  10px;
+        margin:  5px;
         border-radius: 8px;
         overflow: hidden; 
         display: flex; 
         flex-direction: column; 
-
       }
 
       .art-item:hover {

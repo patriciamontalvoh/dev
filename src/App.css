@@ -1,4 +1,3 @@
-/* OK: Add styling for your page here */
 *{
   margin: 0;
   padding: 0;
@@ -68,6 +67,7 @@
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     border: 0;
+    font-size: 1.1em;
   }
 
   .filters-button:hover {
@@ -97,7 +97,7 @@
     color: white;
     border-radius: 15px;
     border: 0;
-
+    font-size: 1.1em;
   }
 
   .clear:hover{
@@ -158,13 +158,13 @@
     position: fixed;
     margin: 1%;
     margin-top: 3%;
-    max-width: 15%;
-    left: 3%;
+    max-width: 13%;
+    left: 2%;
     height: auto;
     max-height: calc(100vh - 30vh);
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: 2%;
+    padding-right: 1%;
   }
 
   .items-page{
@@ -174,8 +174,8 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 18%;
+    margin-right: 18%;
   }
 
   .items-page.in-wishlist {
@@ -190,7 +190,7 @@
     position: fixed;
     margin-top: 3%;
     max-width: 13%;
-    right: 4%; 
+    right: 3%; 
     max-height: calc(100vh - 30vh);
     height: auto;
     overflow-y:scroll;
@@ -255,6 +255,24 @@
     text-align: center;
   }
 
+  .no-results-container {
+    width: 40%;
+    height: auto;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 1.5rem;
+    padding: 10%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+
   .remove-notification {
     width: 25%;
     height: auto;
@@ -262,7 +280,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(227, 227, 227, 0.85);
+    background-color: rgba(255, 255, 255, 0.85);
     color: black;
     font-size: 1.5rem;
     padding: 5%;

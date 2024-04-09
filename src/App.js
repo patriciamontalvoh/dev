@@ -403,10 +403,10 @@ const toggleMaterialFilters = (material) => {
       </div>
       <div className="main-page">
       <div className="filters-page">
-       <h2>Filter:</h2>
+       <h2>Filter</h2>
        <div class="subsection-line-02"> </div> 
        <div class="section-line-white"> </div> 
-        <h3>By medium</h3>
+        <h3>By medium:</h3>
         <div class="subsection-line-03"> </div> 
         <button className={`filters-button ${mediumFilters.includes('oil') ? 'active' : ''}`}  onClick={() => toggleMediumFilters('oil')}>Oil</button>
         <button className={`filters-button ${mediumFilters.includes('acrylic') ? 'active' : ''}`}  onClick={() => toggleMediumFilters('acrylic')}>Acrylic</button>
@@ -414,7 +414,7 @@ const toggleMaterialFilters = (material) => {
           <div class="section-line-white"> </div> 
           <div class="subsection-line-02"> </div> 
           <div class="section-line-white"> </div> 
-        <h3>By material</h3>
+        <h3>By material:</h3>
         <div class="subsection-line-03"> </div> 
         <button className={`filters-button ${materialFilters.includes('canvas') ? 'active' : ''}`}  onClick={() => toggleMaterialFilters('canvas')}>Canvas</button>
         <button className={`filters-button ${materialFilters.includes('board') ? 'active' : ''}`}  onClick={() => toggleMaterialFilters('board')}>Board</button>
@@ -422,38 +422,37 @@ const toggleMaterialFilters = (material) => {
           <div class="section-line-white"> </div> 
           <div class="subsection-line-01"> </div> 
           <div class="section-line-white"> </div>                   
-          <h3>By author</h3>
+          <h3>By author:</h3>
         <div class="subsection-line-03"> </div> 
         <button className={`filters-button ${authorFilters.includes('a') ? 'active' : ''}`}  onClick={() => toggleAuthorFilters('a')}>Miriam Dema</button>
-        <button className={`filters-button ${authorFilters.includes('b') ? 'active' : ''}`}  onClick={() => toggleAuthorFilters('b')}>Beatriz Aigualbella</button>
+        <button className={`filters-button ${authorFilters.includes('b') ? 'active' : ''}`}  onClick={() => toggleAuthorFilters('b')}>Bea Aigualbella</button>
         <button className={`filters-button ${authorFilters.includes('c') ? 'active' : ''}`}  onClick={() => toggleAuthorFilters('c')}>Klas Ernflo</button>
         <button className={`filters-button ${authorFilters.includes('d') ? 'active' : ''}`}  onClick={() => toggleAuthorFilters('d')}>Marcos Isomat</button>
         <button className={`filters-button ${authorFilters.includes('e') ? 'active' : ''}`}  onClick={() => toggleAuthorFilters('e')}>Naoki Kawano</button>
           <div class="section-line-white"> </div> 
           <div class="subsection-line-01"> </div> 
           <div class="section-line-white"> </div> 
-          <h2>Sort:</h2>
+          <h2>Sort</h2>
           <div class="subsection-line-02"> </div> 
           <div class="section-line-white"> </div> 
           <h3>By price:</h3>
           <div class="subsection-line-03"> </div> 
-          <div class="section-line-white"> </div> 
           <div className="sort-buttons">
-          <button className={`filters-button ${priceSortOrder === 'ascending' ? 'active' : ''}`} onClick={() => handlePriceSortButtonClick('ascending')}>Price Low to High</button>
-          <button className={`filters-button ${priceSortOrder === 'descending' ? 'active' : ''}`} onClick={() => handlePriceSortButtonClick('descending')}>Price High to Low</button>
+          <button className={`filters-button ${priceSortOrder === 'ascending' ? 'active' : ''}`} onClick={() => handlePriceSortButtonClick('ascending')}>Low to High</button>
+          <button className={`filters-button ${priceSortOrder === 'descending' ? 'active' : ''}`} onClick={() => handlePriceSortButtonClick('descending')}>High to Low</button>
+          <div class="section-line-white"> </div> 
           <div class="subsection-line-02"> </div> 
           <div class="section-line-white"> </div> 
           <h3>By size:</h3>
           <div class="subsection-line-03"> </div> 
-          <div class="section-line-white"> </div> 
           <div className="sort-buttons"></div>
-          <button className={`filters-button ${sizeSortOrder === 'ascending' ? 'active' : ''}`} onClick={() => handleSizeSortButtonClick('ascending')}>Size Small to Large</button>
-          <button className={`filters-button ${sizeSortOrder === 'descending' ? 'active' : ''}`} onClick={() => handleSizeSortButtonClick('descending')}>Size Large to Small</button>
+          <button className={`filters-button ${sizeSortOrder === 'ascending' ? 'active' : ''}`} onClick={() => handleSizeSortButtonClick('ascending')}>Small to Large</button>
+          <button className={`filters-button ${sizeSortOrder === 'descending' ? 'active' : ''}`} onClick={() => handleSizeSortButtonClick('descending')}>Large to Small</button>
           </div>
-          <div class="vertical-line"> </div>          
         </div>  
       <div className="items-page">
-          {sortedData.map((item, index) => ( 
+      {sortedData.length > 0 ?(
+       sortedData.map((item, index) => ( 
             <ArtItem
             key={index}
             image={item.image}
@@ -473,8 +472,16 @@ const toggleMaterialFilters = (material) => {
             removeFromCart={() => removeFromCart(item)}
             removeFromWishlist={() => removeFromWishlist(item)}
             />
-          ))}
-      </div>
+            ))
+            ):(
+              <div className="no-results-container">
+                <img src={process.env.PUBLIC_URL + '/images/no-results.png'} alt="No results" />
+                <h2><strong>Oops! </strong> </h2>
+                <p><strong>No artworks match your criteria, </strong> try changing the applied filters.</p>
+              </div>
+            )}
+          </div>
+
       <div className="cart-page">
        <h2>My cart</h2>
        <div class="subsection-line-02"> </div> 
