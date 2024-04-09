@@ -163,6 +163,7 @@
     height: auto;
     max-height: calc(100vh - 30vh);
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 2%;
   }
 
@@ -193,7 +194,6 @@
     max-height: calc(100vh - 30vh);
     height: auto;
     overflow-y:scroll;
-    overflow-x: visible;
     }
 
   .art-item.in-wishlist {
