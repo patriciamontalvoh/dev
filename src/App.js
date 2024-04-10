@@ -47,7 +47,6 @@ function App() {
         setCartNotification(
           <span>
             <strong className="notifiaction-message"> Congratulations! </strong> 
-            <img class="notifiaction-cart-icon" src="./images/cart.png"/>
             <strong className="cart-item-name">{itemToAdd.name}</strong> has been added to your cart
           </span>
         );
@@ -63,7 +62,6 @@ function App() {
         setCartNotification(
           <span>
             <strong className="notifiaction-message"> Congratulations! </strong> 
-            <img class="notifiaction-cart-icon" src="./images/cart.png"/>
             <strong className="cart-item-name">{itemToAdd.name}</strong> has been moved to your cart
           </span>
         );
@@ -90,7 +88,6 @@ function App() {
         setWishlistNotification(
           <span>
             <strong className="notifiaction-message"> Congratulations! </strong> 
-            <img class="notifiaction-icon" src="./images/hearth.png"/>
             <strong className="wishlist-item-name">{itemToAdd.name}</strong> has been added to your wishlist
           </span>
         );
@@ -106,7 +103,6 @@ function App() {
         setWishlistNotification(
           <span>
             <strong className="notifiaction-message"> Congratulations! </strong> 
-            <img class="notifiaction-icon" src="./images/hearth.png"/>
             <strong className="wishlist-item-name">{itemToAdd.name}</strong> has been moved to your wishlist
           </span>
         );
